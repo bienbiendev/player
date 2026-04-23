@@ -5,7 +5,6 @@ import {
   isNumber,
   isObject,
   isString,
-  isUndefined,
   type DeferredPromise,
 } from 'maverick.js/std';
 
@@ -77,7 +76,7 @@ export class YouTubeProvider
    *
    * @defaultValue `false`
    */
-  cookies = false;
+  cookies = true;
 
   get currentSrc(): Src<string> | null {
     return this.#currentSrc;
