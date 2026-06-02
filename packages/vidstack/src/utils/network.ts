@@ -23,18 +23,19 @@ export function preconnect(
   url: string,
   rel: 'preconnect' | 'prefetch' | 'preload' = 'preconnect',
 ): boolean {
-  if (__SERVER__) return false;
+  return false;
+  /** Disable preconnect link as it throw CLS error in lighthouse */
+  // if (__SERVER__) return false;
+  // const exists = document.querySelector(`link[href="${url}"]`);
+  // if (!isNull(exists)) return true;
 
-  const exists = document.querySelector(`link[href="${url}"]`);
-  if (!isNull(exists)) return true;
+  // const link = document.createElement('link');
+  // link.rel = rel;
+  // link.href = url;
+  // link.crossOrigin = 'true';
 
-  const link = document.createElement('link');
-  link.rel = rel;
-  link.href = url;
-  link.crossOrigin = 'true';
-
-  document.head.append(link);
-  return true;
+  // document.head.append(link);
+  // return true;
 }
 
 const pendingRequests: Record<string, DeferredPromise<void>> = {};
